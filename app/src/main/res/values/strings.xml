@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TestProject</string>
+
+    <string name="tvHello">Hello! Open users list?</string>
+    <string name="tvHelloIfFail">Something goes wrong, reopen?</string>
+
+    <string name="btnHello">Open</string>
+    <string name="btnHelloIfFail">Reopen</string>
 </resources>

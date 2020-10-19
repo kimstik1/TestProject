@@ -2,9 +2,9 @@ package com.example.testproject.recycler.data
 
 import com.example.testproject.network.Model
 
-class Data {
+class Data(m: Model) {
 
-    private var id : Int = 0
+    private var id: Int = 0
     private var name: String? = null
     private var eMail: String? = null
     private var website: String? = null

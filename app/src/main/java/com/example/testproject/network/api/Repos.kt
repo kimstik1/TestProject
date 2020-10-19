@@ -1,30 +1,19 @@
 package com.example.testproject.network.api
 
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+import retrofit2.create
 
-class Repos {
+object Repos {
 
-    fun getApi(): Api? {
-        return getRetrofit().create(Api::class.java)
-    }
+    val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
-    fun getRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .client(getOkHttpClient())
-            .baseUrl("https://jsonplaceholder.typicode.com/")
+    val instance: Api by lazy {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-    }
 
-    fun getOkHttpClient(): OkHttpClient? {
-        return OkHttpClient().newBuilder()
-            .readTimeout(30, TimeUnit.SECONDS)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(HttpLoggingInterceptor())
-            .build()
+        retrofit.create()
     }
 }

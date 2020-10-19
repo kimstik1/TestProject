@@ -1,11 +1,13 @@
 package com.example.testproject.recycler.data
 
-class Posts {
+import com.example.testproject.network.UserPosts
+
+class Posts(p: UserPosts) {
 
     private var title: String? = null
     private var body: String? = null
 
-    fun Posts(title: String?, body: String?) {
+    fun Posts(p: UserPosts) {
         this.title = title
         this.body = body
     }
