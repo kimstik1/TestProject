@@ -6,7 +6,7 @@ import retrofit2.create
 
 object Repos {
 
-    val BASE_URL = "https://jsonplaceholder.typicode.com/"
+    private val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
     val instance: Api by lazy {
         val retrofit = Retrofit.Builder()

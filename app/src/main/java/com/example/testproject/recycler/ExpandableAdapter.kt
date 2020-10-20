@@ -14,44 +14,35 @@ import com.example.testproject.recycler.data.Data
 import com.example.testproject.recycler.data.Posts
 
 class ExpandableAdapter(
-    postsList: ArrayList<ArrayList<Posts>>,
-    dataList: ArrayList<Data>,
-    context: Context,
+    postsList1: ArrayList<ArrayList<Posts>>,
+    dataList1: ArrayList<Data>,
     activity1: Activity
 ) : BaseExpandableListAdapter() {
 
-    var postsList: ArrayList<ArrayList<Posts>>? = null
-    var dataList: ArrayList<Data>? = null
-    var mContext: Context? = null
-    var activity: Activity? = null
+    private val postsList: ArrayList<ArrayList<Posts>>
+    private val dataList: ArrayList<Data>
+    private val activity: Activity
 
-    fun ExpandableAdapter(
-        postsList: ArrayList<ArrayList<Posts>>,
-        dataList: ArrayList<Data>,
-        mContext: Context,
-        activity: Activity
-    ) {
-
-        this.postsList = postsList
-        this.dataList = dataList
-        this.mContext = mContext
-        this.activity = activity
+    init {
+        postsList = postsList1
+        dataList = dataList1
+        activity = activity1
     }
 
     override fun getGroupCount(): Int {
-        return dataList!!.size
+        return dataList.size
     }
 
     override fun getChildrenCount(groupPosition: Int): Int {
-        return postsList!![groupPosition].size
+        return postsList[groupPosition].size
     }
 
     override fun getGroup(groupPosition: Int): Any? {
-        return dataList!![groupPosition]
+        return dataList[groupPosition]
     }
 
     override fun getChild(groupPosition: Int, childPosition: Int): Any? {
-        return postsList!![groupPosition][childPosition]
+        return postsList[groupPosition][childPosition]
     }
 
     override fun getGroupId(groupPosition: Int): Long {
@@ -67,49 +58,55 @@ class ExpandableAdapter(
     }
 
     override fun getGroupView(
-        groupPosition: Int, isExpanded: Boolean, convertView: View?,
-        parent: ViewGroup?
+        groupPosition: Int, isExpanded: Boolean, convertView: View,
+        parent: ViewGroup
     ): View? {
-        var convertView = convertView
-        if (convertView == null) {
+
+        var itemView = convertView
+        if (itemView == null) {
             val inflater =
-                mContext!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = inflater.inflate(R.layout.parent_list, null)
+                activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            itemView = inflater.inflate(R.layout.parent_list, null)
         }
-        val tvName = convertView!!.findViewById<View>(R.id.tvName) as TextView
+
+        val tvName = convertView.findViewById<View>(R.id.tvName) as TextView
         val tvEmail = convertView.findViewById<View>(R.id.tvEmail) as TextView
         val tvWeb = convertView.findViewById<View>(R.id.tvWebSite) as TextView
         val tvPhone = convertView.findViewById<View>(R.id.tvPhone) as TextView
-        tvName.text = dataList!![groupPosition].getName()
-        tvEmail.text = dataList!![groupPosition].geteMail()
-        tvWeb.text = dataList!![groupPosition].getWebsite()
-        tvPhone.text = dataList!![groupPosition].getPhone()
 
-        tvWeb.setOnClickListener { v: View? ->
+        tvName.text = dataList[groupPosition].name
+        tvEmail.text = dataList[groupPosition].eMail
+        tvWeb.text = dataList[groupPosition].website
+        tvPhone.text = dataList[groupPosition].phone
+
+        tvWeb.setOnClickListener {
             val uri =
-                Uri.parse("http://www." + dataList!![groupPosition].getWebsite())
+                Uri.parse("http://www." + dataList[groupPosition].website)
             val intent = Intent(Intent.ACTION_VIEW, uri)
-            activity!!.startActivity(intent)
+            activity.startActivity(intent)
         }
 
-        return convertView
+        return itemView
     }
 
     override fun getChildView(
         groupPosition: Int, childPosition: Int, isLastChild: Boolean,
-        convertView: View?, parent: ViewGroup?
-    ): View? {
-        var convertView = convertView
-        if (convertView == null) {
+        convertView: View, parent: ViewGroup
+    ): View {
+
+        var itemView = convertView
+        if (itemView == null) {
             val inflater =
-                mContext!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = inflater.inflate(R.layout.child_list, null)
+                activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            itemView = inflater.inflate(R.layout.child_list, null)
         }
-        val tvTitle = convertView!!.findViewById<TextView>(R.id.tvTitle)
+
+        val tvTitle = convertView.findViewById<TextView>(R.id.tvTitle)
         val tvBody = convertView.findViewById<TextView>(R.id.tvBody)
-        tvTitle.setText(postsList!![groupPosition][childPosition].getTitle())
-        tvBody.setText(postsList!![groupPosition][childPosition].getBody())
-        return convertView
+
+        tvTitle.text = postsList[groupPosition][childPosition].title
+        tvBody.text = postsList[groupPosition][childPosition].body
+        return itemView
     }
 
     override fun isChildSelectable(groupPosition: Int, childPosition: Int): Boolean {

@@ -4,27 +4,11 @@ import com.example.testproject.network.UserPosts
 
 class Posts(p: UserPosts) {
 
-    private var title: String? = null
-    private var body: String? = null
+    var title: String
+    var body: String
 
-    fun Posts(p: UserPosts) {
-        this.title = title
-        this.body = body
-    }
-
-    fun getTitle(): String? {
-        return title
-    }
-
-    fun setTitle(title: String?) {
-        this.title = title
-    }
-
-    fun getBody(): String? {
-        return body
-    }
-
-    fun setBody(body: String?) {
-        this.body = body
+    init {
+        title = p.title
+        body = p.body
     }
 }
