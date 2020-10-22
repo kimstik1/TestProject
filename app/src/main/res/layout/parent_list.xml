@@ -3,12 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="4dp"
+        app:contentPadding="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 tools:text="Kirill Arakcheev"/>
 
             <TextView
@@ -40,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="10dp">
 
             <TextView
