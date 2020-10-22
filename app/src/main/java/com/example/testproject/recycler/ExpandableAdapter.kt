@@ -1,5 +1,6 @@
 package com.example.testproject.recycler
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -14,9 +15,9 @@ import com.example.testproject.recycler.data.Data
 import com.example.testproject.recycler.data.Posts
 
 class ExpandableAdapter(
-    postsList1: ArrayList<ArrayList<Posts>>,
-    dataList1: ArrayList<Data>,
-    activity1: Activity
+    postsList: ArrayList<ArrayList<Posts>>,
+    dataList: ArrayList<Data>,
+    activity: Activity
 ) : BaseExpandableListAdapter() {
 
     private val postsList: ArrayList<ArrayList<Posts>>
@@ -24,9 +25,9 @@ class ExpandableAdapter(
     private val activity: Activity
 
     init {
-        postsList = postsList1
-        dataList = dataList1
-        activity = activity1
+        this.postsList = postsList
+        this.dataList = dataList
+        this.activity = activity
     }
 
     override fun getGroupCount(): Int {
@@ -57,8 +58,9 @@ class ExpandableAdapter(
         return true
     }
 
+    @SuppressLint("InflateParams")
     override fun getGroupView(
-        groupPosition: Int, isExpanded: Boolean, convertView: View,
+        groupPosition: Int, isExpanded: Boolean, convertView: View?,
         parent: ViewGroup
     ): View? {
 
@@ -69,10 +71,10 @@ class ExpandableAdapter(
             itemView = inflater.inflate(R.layout.parent_list, null)
         }
 
-        val tvName = convertView.findViewById<View>(R.id.tvName) as TextView
-        val tvEmail = convertView.findViewById<View>(R.id.tvEmail) as TextView
-        val tvWeb = convertView.findViewById<View>(R.id.tvWebSite) as TextView
-        val tvPhone = convertView.findViewById<View>(R.id.tvPhone) as TextView
+        val tvName = itemView!!.findViewById<View>(R.id.tvName) as TextView
+        val tvEmail = itemView.findViewById<View>(R.id.tvEmail) as TextView
+        val tvWeb = itemView.findViewById<View>(R.id.tvWebSite) as TextView
+        val tvPhone = itemView.findViewById<View>(R.id.tvPhone) as TextView
 
         tvName.text = dataList[groupPosition].name
         tvEmail.text = dataList[groupPosition].eMail
@@ -89,9 +91,10 @@ class ExpandableAdapter(
         return itemView
     }
 
+    @SuppressLint("InflateParams")
     override fun getChildView(
         groupPosition: Int, childPosition: Int, isLastChild: Boolean,
-        convertView: View, parent: ViewGroup
+        convertView: View?, parent: ViewGroup
     ): View {
 
         var itemView = convertView
@@ -101,8 +104,8 @@ class ExpandableAdapter(
             itemView = inflater.inflate(R.layout.child_list, null)
         }
 
-        val tvTitle = convertView.findViewById<TextView>(R.id.tvTitle)
-        val tvBody = convertView.findViewById<TextView>(R.id.tvBody)
+        val tvTitle = itemView!!.findViewById<TextView>(R.id.tvTitle)
+        val tvBody = itemView.findViewById<TextView>(R.id.tvBody)
 
         tvTitle.text = postsList[groupPosition][childPosition].title
         tvBody.text = postsList[groupPosition][childPosition].body

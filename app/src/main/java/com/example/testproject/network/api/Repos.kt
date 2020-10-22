@@ -14,6 +14,6 @@ object Repos {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        retrofit.create()
+        retrofit.create(Api::class.java)
     }
 }
