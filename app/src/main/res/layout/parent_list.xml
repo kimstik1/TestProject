@@ -21,10 +21,10 @@
 
             <TextView
                 android:id="@+id/tvName"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="18sp"
                 tools:text="Kirill Arakcheev"/>
 
             <TextView
@@ -32,7 +32,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="50"
                 android:gravity="end"
                 android:textSize="14sp"
                 tools:text="89031147990"/>
@@ -48,9 +47,9 @@
 
             <TextView
                 android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="75"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:textSize="14sp"
                 tools:text="kimstik1@Yandex.ru"/>
 
@@ -58,7 +57,6 @@
                 android:id="@+id/tvWebSite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
                 android:gravity="end"
                 android:textSize="14sp"
                 tools:text="vk.com/kimstik" />

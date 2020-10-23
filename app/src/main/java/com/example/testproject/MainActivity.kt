@@ -77,9 +77,8 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     postsList!!.add(
-                        j,
-                        postsArrayList
-                    )  // сохраняем list в postList, который передадим в адаптер
+                        j,                // позиция на которую сохраняется list
+                        postsArrayList)  // сохраняем list в postList, который передадим в адаптер
                 }
                 // в случае успеха 2 запросов выводим list на экран
                 showList()
@@ -92,8 +91,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showList() {
-        adapter = ExpandableAdapter(postsList!!, dataList!!, this)
-        expandableListView.setAdapter(adapter)
+        adapter = ExpandableAdapter(postsList!!, dataList!!, this) // передаем данные в адаптер
+        expandableListView.setAdapter(adapter)                            // сохраняем для нашего expandable адаптер
 
         // Убираем видимость btn и tv, выводим список
         tvStart.visibility = View.INVISIBLE

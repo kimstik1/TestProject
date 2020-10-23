@@ -2,7 +2,7 @@ package com.example.testproject.network
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-
+//поля для получения из интернета (посты пользователей)
 class UserPosts {
 
     @SerializedName("userId")

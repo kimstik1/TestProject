@@ -1,7 +1,7 @@
 package com.example.testproject.network
 
 import com.google.gson.annotations.SerializedName
-
+//поля для получения из интернета (пользователи)
 class Model {
 
     @SerializedName("id")

@@ -15,13 +15,13 @@ import com.example.testproject.recycler.data.Data
 import com.example.testproject.recycler.data.Posts
 
 class ExpandableAdapter(
-    postsList: ArrayList<ArrayList<Posts>>,
-    dataList: ArrayList<Data>,
+    postsList: ArrayList<ArrayList<Posts>>, //list с постами
+    dataList: ArrayList<Data>,              //list с user'ами
     activity: Activity
 ) : BaseExpandableListAdapter() {
 
-    private val postsList: ArrayList<ArrayList<Posts>>
-    private val dataList: ArrayList<Data>
+    private val postsList: ArrayList<ArrayList<Posts>> //list с постами
+    private val dataList: ArrayList<Data>              //list с user'ами
     private val activity: Activity
 
     init {
@@ -30,19 +30,19 @@ class ExpandableAdapter(
         this.activity = activity
     }
 
-    override fun getGroupCount(): Int {
+    override fun getGroupCount(): Int { // узнаем размер list'a с user'ами
         return dataList.size
     }
 
-    override fun getChildrenCount(groupPosition: Int): Int {
+    override fun getChildrenCount(groupPosition: Int): Int { // узнаем размер list'a с постами user'a
         return postsList[groupPosition].size
     }
 
-    override fun getGroup(groupPosition: Int): Any? {
+    override fun getGroup(groupPosition: Int): Any? { // получаем user'а
         return dataList[groupPosition]
     }
 
-    override fun getChild(groupPosition: Int, childPosition: Int): Any? {
+    override fun getChild(groupPosition: Int, childPosition: Int): Any? { // получаем пост user'a
         return postsList[groupPosition][childPosition]
     }
 
@@ -59,7 +59,7 @@ class ExpandableAdapter(
     }
 
     @SuppressLint("InflateParams")
-    override fun getGroupView(
+    override fun getGroupView( // наполняем родительские карточки
         groupPosition: Int, isExpanded: Boolean, convertView: View?,
         parent: ViewGroup
     ): View? {
@@ -81,7 +81,7 @@ class ExpandableAdapter(
         tvWeb.text = dataList[groupPosition].website
         tvPhone.text = dataList[groupPosition].phone
 
-        tvWeb.setOnClickListener {
+        tvWeb.setOnClickListener { //обработчик нажатия для перехода по ссылку в браузер
             val uri =
                 Uri.parse("http://www." + dataList[groupPosition].website)
             val intent = Intent(Intent.ACTION_VIEW, uri)
@@ -92,7 +92,7 @@ class ExpandableAdapter(
     }
 
     @SuppressLint("InflateParams")
-    override fun getChildView(
+    override fun getChildView( // наполняем дочерние карточки
         groupPosition: Int, childPosition: Int, isLastChild: Boolean,
         convertView: View?, parent: ViewGroup
     ): View {
